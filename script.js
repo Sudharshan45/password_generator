@@ -49,7 +49,7 @@ function generatePassword(){
         const x = generateX();
         password += x;
     }
-    console.log(password);
+    //console.log(password);
     pwEl.innerText = password;
 }
 function generateX() {
@@ -76,3 +76,18 @@ function generateX() {
 }
 generateEl.addEventListener('click',generatePassword)
 //alert(getNumber())
+copyEl.addEventListener("click", () => {
+    const textarea = document.createElement("textarea");
+    const password = pwEl.innerText;
+
+    if (!password) {
+        return;
+    }
+
+    textarea.value = password;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+    alert("Password copied to clipboard");
+});
